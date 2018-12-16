@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Kafka Streams</title>
+</head>
+<body>
+    <h1>Number of accounts</h1>
+    <p>Enter here the number of accounts you want to generate. Then check the command line for the application to see the stream going.</p>
+    <form action="/" method="post" th:object="${NumberOfAccounts}">
+        <input type="text" th:field="*{numberOfAccounts}" /> <button type="submit" value="Go">Go</button>
+    </form>
+</body>
+</html>
