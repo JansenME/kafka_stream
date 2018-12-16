@@ -16,7 +16,7 @@ import java.util.List;
 @Slf4j
 public class PerformanceLogger {
     @Around("execution(* nl.demo.kafka.service.ProducerService.createStream(..))")
-    public List<Account> aroundCreateStream(ProceedingJoinPoint joinPoint){
+    public Object aroundCreateStream(ProceedingJoinPoint joinPoint){
         long start = System.currentTimeMillis();
 
         Integer numberOfAccounts = (Integer) joinPoint.getArgs()[0];
