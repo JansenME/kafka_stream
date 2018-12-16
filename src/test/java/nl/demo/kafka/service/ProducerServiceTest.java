@@ -15,16 +15,16 @@ import static nl.demo.kafka.service.ProducerService.STREAM_TOPIC_NAME;
 
 public class ProducerServiceTest {
     private MockProducer<String, Integer> producerMock;
+    private ProducerService producerService;
 
     @Before
     public void setUp() {
         producerMock = new MockProducer<>(true, new StringSerializer(), new IntegerSerializer());
+        producerService = new ProducerService();
     }
 
     @Test
     public void testProducer() {
-        ProducerService producerService = new ProducerService();
-
         producerService.producer = producerMock;
 
         for (ProducerRecord<String, Integer> producerRecord : producerRecordList()) {
@@ -36,6 +36,11 @@ public class ProducerServiceTest {
         List<ProducerRecord<String, Integer>> expected = producerRecordList();
 
         Assert.assertEquals("Lists of producerRecords did not match", expected, actual);
+    }
+
+    @Test
+    public void testCreateStream() {
+        producerService.createStream(5);
     }
 
     private List<ProducerRecord<String, Integer>> producerRecordList() {
