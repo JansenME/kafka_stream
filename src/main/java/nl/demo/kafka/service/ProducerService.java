@@ -7,24 +7,27 @@ import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Properties;
+import java.util.stream.IntStream;
 
 @Service
 public class ProducerService {
     static final String STREAM_TOPIC_NAME = "AccountsBalancesList";
     Producer<String, Integer> producer;
 
-    public void createStream(int numberOfAccounts) {
-        List<Account> accounts = AccountGenerator.generateAccounts(numberOfAccounts);
-
+    public void createProducer(int numberOfAccounts) {
         Properties properties = createProperties();
 
         producer = new KafkaProducer<>(properties);
 
-        for (Account account : accounts) {
-            producer.send(new ProducerRecord<>(STREAM_TOPIC_NAME, account.createAccountKey(), account.getBalance()));
-        }
+        IntStream.range( 0 , numberOfAccounts)
+                .parallel()
+                .forEach( element -> {
+                    Account account = AccountGenerator.generateAccount();
+
+                    producer.send(new ProducerRecord<>(STREAM_TOPIC_NAME, account.createAccountKey(), account.getBalance()));
+
+                });
 
         producer.close();
     }

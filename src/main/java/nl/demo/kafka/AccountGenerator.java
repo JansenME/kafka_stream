@@ -29,6 +29,12 @@ public class AccountGenerator {
         return accountList;
     }
 
+    public static Account generateAccount() {
+        Iban iban = generateIban();
+
+        return new Account(generateBic(iban), iban.toString(), generateCurrencyCode(), generateBalance());
+    }
+
     private static Iban generateIban() {
         return Iban.random(CountryCode.NL);
     }

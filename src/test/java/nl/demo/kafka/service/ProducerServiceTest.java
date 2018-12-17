@@ -40,7 +40,7 @@ public class ProducerServiceTest {
 
     @Test
     public void testCreateStream() {
-        producerService.createStream(5);
+        producerService.createProducer(5);
     }
 
     private List<ProducerRecord<String, Integer>> producerRecordList() {

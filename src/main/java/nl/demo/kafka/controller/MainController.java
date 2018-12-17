@@ -22,7 +22,7 @@ public class MainController {
 
     @PostMapping("/")
     public String postHomePage(@ModelAttribute NumberOfAccounts numberOfAccounts) {
-        producerService.createStream(numberOfAccounts.getNumberOfAccounts());
+        producerService.createProducer(numberOfAccounts.getNumberOfAccounts());
         return "done";
     }
 }
