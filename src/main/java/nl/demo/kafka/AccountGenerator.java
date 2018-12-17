@@ -34,7 +34,7 @@ public class AccountGenerator {
     }
 
     private static int generateBalance() {
-        return ThreadLocalRandom.current().nextInt(1, 2147483647);
+        return ThreadLocalRandom.current().nextInt(1, Integer.MAX_VALUE);
     }
 
     private static String generateBic(Iban iban) {
