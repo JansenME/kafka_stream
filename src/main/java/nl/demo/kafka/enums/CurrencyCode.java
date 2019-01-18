@@ -9,18 +9,18 @@ public enum CurrencyCode {
     EUR("EUR"),
     USD("USD");
 
-    private final String currencyCode;
+    private final String currency;
 
     private static final List<CurrencyCode> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
     private static final int SIZE = VALUES.size();
     private static final Random RANDOM = new Random();
 
-    CurrencyCode(String currencyCode) {
-        this.currencyCode = currencyCode;
+    CurrencyCode(String currency) {
+        this.currency = currency;
     }
 
-    public String getCurrencyCode() {
-        return currencyCode;
+    public String getCurrency() {
+        return currency;
     }
 
     public static CurrencyCode randomCurrencyCode() {

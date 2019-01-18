@@ -7,8 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class ConsumerController {
+    private final ConsumerService consumerService;
+
     @Autowired
-    ConsumerService consumerService;
+    public ConsumerController(ConsumerService consumerService) {
+        this.consumerService = consumerService;
+    }
 
     @GetMapping("/consume")
     public String consumer() {

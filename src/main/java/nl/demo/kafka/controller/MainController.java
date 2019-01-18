@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class MainController {
+    private final ProducerService producerService;
+
     @Autowired
-    ProducerService producerService;
+    public MainController(ProducerService producerService) {
+        this.producerService = producerService;
+    }
 
     @GetMapping("/")
     public String homePage(Model model) {
@@ -22,7 +26,7 @@ public class MainController {
 
     @PostMapping("/")
     public String postHomePage(@ModelAttribute NumberOfAccounts numberOfAccounts) {
-        producerService.createProducer(numberOfAccounts.getNumberOfAccounts());
+        producerService.createProducer(numberOfAccounts.getNrOfAccounts());
         return "done";
     }
 }

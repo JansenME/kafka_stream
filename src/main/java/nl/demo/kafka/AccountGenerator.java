@@ -13,7 +13,10 @@ import static nl.demo.kafka.enums.CurrencyCode.randomCurrencyCode;
 
 @Service
 public class AccountGenerator {
-    public static List<Account> generateAccounts(int numberOfAccounts) {
+    private AccountGenerator() {
+    }
+
+    static List<Account> generateAccounts(int numberOfAccounts) {
         List<Account> accountList = new ArrayList<>();
 
         if (numberOfAccounts < 0) {
@@ -48,6 +51,6 @@ public class AccountGenerator {
     }
 
     private static String generateCurrencyCode() {
-        return randomCurrencyCode().getCurrencyCode();
+        return randomCurrencyCode().getCurrency();
     }
 }

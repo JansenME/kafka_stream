@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class NumberOfAccounts {
-    private int numberOfAccounts;
+    private int nrOfAccounts;
 }
