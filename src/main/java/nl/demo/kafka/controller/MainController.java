@@ -25,8 +25,8 @@ public class MainController {
     }
 
     @PostMapping("/")
-    public String postHomePage(@ModelAttribute NumberOfAccounts numberOfAccounts) {
-        producerService.createProducer(numberOfAccounts.getNrOfAccounts());
+    public String postHomePage(@ModelAttribute NumberOfAccounts nrOfAccounts) {
+        producerService.createProducer(nrOfAccounts.getNrOfAccounts());
         return "done";
     }
 }

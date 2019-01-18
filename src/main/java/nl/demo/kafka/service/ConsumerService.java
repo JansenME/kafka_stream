@@ -1,7 +1,6 @@
 package nl.demo.kafka.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.springframework.stereotype.Service;
@@ -25,9 +24,7 @@ public class ConsumerService {
         while (true) {
             ConsumerRecords<String, Integer> records = consumer.poll(Duration.ofMillis(100));
 
-            for (ConsumerRecord<String, Integer> record : records) {
-                log.info("{}. {} - {}", record.offset(), record.key(), record.value());
-            }
+            records.forEach(record -> log.info("{}. {} - {}", record.offset(), record.key(), record.value()));
         }
     }
 
