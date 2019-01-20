@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Accounts</title>
+
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+        $(function () {
+            var socket = io();
+
+            socket.on('account', function(msg){
+                $('#accounts').append($('<li>').text(msg));
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <h1>Accounts</h1>
+
+    <ol id="accounts"></ol>
+</body>
+</html>

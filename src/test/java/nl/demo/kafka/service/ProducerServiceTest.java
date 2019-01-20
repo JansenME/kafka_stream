@@ -27,9 +27,7 @@ public class ProducerServiceTest {
     public void testProducer() {
         producerService.producer = producerMock;
 
-        for (ProducerRecord<String, Integer> producerRecord : producerRecordList()) {
-            producerService.producer.send(producerRecord);
-        }
+        producerRecordList().forEach(record -> producerService.producer.send(record));
 
         List<ProducerRecord<String, Integer>> actual = producerMock.history();
 

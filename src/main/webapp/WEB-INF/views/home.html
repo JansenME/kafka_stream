@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Number of accounts</h1>
-    <p>Enter here the number of accounts you want to generate. Then check the command line for the application to see the stream going.</p>
+    <p>Enter the number of accounts you want to generate. Then check the command line for the application to see the stream going.</p>
     <form action="/" method="post" th:object="${NumberOfAccounts}">
         <input type="text" th:field="*{nrOfAccounts}" /> <button type="submit" value="Go">Go</button>
     </form>
