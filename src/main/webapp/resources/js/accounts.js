@@ -8,11 +8,12 @@ app.get('/streamAccounts', function(req, res){
     res.sendFile(path.resolve(__dirname + '/../../WEB-INF/views/accounts.html'));
 });
 
-app.get('/consumeFrontend', function(req, res){
+app.get('/consumeFrontend', function(req, res) {
+    var kafkaClient = new kafka.KafkaClient();
     var consumer = new kafka.Consumer(
-        new kafka.KafkaClient(),
+        kafkaClient,
         [
-            { topic: 'Accounts4',  groupId: 'demo' }
+            { topic: 'Accounts9',  groupId: 'demoFrontend' }
         ],
         {
             autoCommit: false
@@ -20,9 +21,11 @@ app.get('/consumeFrontend', function(req, res){
     );
 
     consumer.on('message', function (message) {
-        io.emit('account', message.key);
+        message.offset
 
-        console.log(message.key + '0002');
+        console.log(message.key);
+
+        io.emit('account', message.key);
     });
 });
 

@@ -4,15 +4,30 @@
     <meta charset="UTF-8">
     <title>Accounts</title>
 
-    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="/socket.io/socket.io.js"></script>
 
     <script>
-        $(function () {
+        document.addEventListener('DOMContentLoaded', function() {
             var socket = io();
+            var cache = {};
+            var accountsList = document.getElementById('accounts');
+            var scrollThrottle;
 
             socket.on('account', function(msg){
-                $('#accounts').append($('<li>').text(msg));
+                if (cache.hasOwnProperty(msg)) {
+                    console.log(`Duplicate message "${msg}"`, ++cache[msg]);
+                    return;
+                }
+
+                cache[msg] = 0;
+                var account = document.createElement('li');
+                account.innerText = msg;
+                accountsList.append(account);
+
+                scrollThrottle = setTimeout(function() {
+                    clearTimeout(scrollThrottle);
+                    window.scrollTo(account.offsetLeft, account.offsetTop + account.offsetHeight);
+                }, 200);
             });
         });
     </script>
