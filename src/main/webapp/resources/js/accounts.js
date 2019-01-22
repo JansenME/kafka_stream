@@ -10,10 +10,12 @@ app.get('/streamAccounts', function(req, res){
 
 app.get('/consumeFrontend', function(req, res) {
     var kafkaClient = new kafka.KafkaClient();
+    var cache = {};
+
     var consumer = new kafka.Consumer(
         kafkaClient,
         [
-            { topic: 'Accounts9',  groupId: 'demoFrontend' }
+            { topic: 'Account2',  groupId: 'demoFrontend' }
         ],
         {
             autoCommit: false
@@ -21,7 +23,12 @@ app.get('/consumeFrontend', function(req, res) {
     );
 
     consumer.on('message', function (message) {
-        message.offset
+        if (cache.hasOwnProperty(message.offset)) {
+            console.log(`Duplicate message offset "${message.offset}"`, ++cache[message.offset]);
+            return;
+        }
+
+        cache[message.offset] = 0;
 
         console.log(message.key);
 
