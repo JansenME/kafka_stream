@@ -4,18 +4,19 @@ var path = require('path');
 var kafka = require('kafka-node');
 var io = require('socket.io').listen(http);
 
+var cache = {};
+
 app.get('/streamAccounts', function(req, res){
     res.sendFile(path.resolve(__dirname + '/../../WEB-INF/views/accounts.html'));
 });
 
 app.get('/consumeFrontend', function(req, res) {
     var kafkaClient = new kafka.KafkaClient();
-    var cache = {};
 
     var consumer = new kafka.Consumer(
         kafkaClient,
         [
-            { topic: 'Account2',  groupId: 'demoFrontend' }
+            { topic: 'Account3',  groupId: 'demoFrontend' }
         ],
         {
             autoCommit: false

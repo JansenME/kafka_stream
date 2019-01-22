@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 
 @Service
 public class ProducerService {
-    static final String STREAM_TOPIC_NAME = "Account2";
+    static final String STREAM_TOPIC_NAME = "Account3";
     Producer<String, Integer> producer;
 
     public void createProducer(int numberOfAccounts) {
