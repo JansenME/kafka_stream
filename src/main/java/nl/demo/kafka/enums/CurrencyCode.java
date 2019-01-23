@@ -7,7 +7,9 @@ import java.util.Random;
 
 public enum CurrencyCode {
     EUR("EUR"),
-    USD("USD");
+    USD("USD"),
+    BHD("BHD"),
+    BRU("BRU");
 
     private final String currency;
 

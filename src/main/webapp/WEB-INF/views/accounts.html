@@ -26,7 +26,12 @@
 
                 scrollThrottle = setTimeout(function() {
                     clearTimeout(scrollThrottle);
-                    window.scrollTo(account.offsetLeft, account.offsetTop + account.offsetHeight);
+                    window.scrollTo({
+                        top: account.offsetTop + account.offsetHeight,
+                        behavior: 'smooth',
+                    })
+
+
                 }, 200);
             });
         });

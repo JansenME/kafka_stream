@@ -16,7 +16,7 @@ app.get('/consumeFrontend', function(req, res) {
     var consumer = new kafka.Consumer(
         kafkaClient,
         [
-            { topic: 'Account3',  groupId: 'demoFrontend' }
+            { topic: 'Account5',  groupId: 'demoFrontend' }
         ],
         {
             autoCommit: false
